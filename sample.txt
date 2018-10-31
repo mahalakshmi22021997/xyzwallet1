@@ -1,0 +1,34 @@
+public class EmployeeServiceImp implements IEmployeeService {
+
+	IEmployeedao dao = new CEmployeeDaoImp();
+
+	@Override
+	public boolean save(EmployeeBean eb) {
+
+		return dao.save(eb);
+	}
+
+	@Override
+	public boolean validation(EmployeeBean eb) throws EmployeeException {
+
+		boolean evalid = true;
+
+		if (!(eb.getEmployeename().length() >= 3) {
+			throw new EmployeeException(EmployeeExceptionMessage.ERROR1);
+
+		}
+		if (!(eb.getEmployeeid() > 999)) {
+			throw new EmployeeException(EmployeeExceptionMessage.ERROR2);
+
+		}
+		if (!(eb.getEmployeesalary() >= 0)) {
+			throw new EmployeeException(EmployeeExceptionMessage.ERROR3);
+
+		}
+		if (eb.getEmployeedesg() == null) {
+			throw new EmployeeException(EmployeeExceptionMessage.ERROR4);
+
+		}
+	
+return evalid;
+	}

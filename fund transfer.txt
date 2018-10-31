@@ -1,0 +1,40 @@
+       public boolean fundTransfer(String ph1, double amount, String ph2)throws WalletException {
+              addAccount();
+              boolean b2 = false;
+              boolean match=service.validatePhNo(ph1,bean.getPh2());
+              System.out.println(match);
+              
+   if(match)
+   {
+              for (WalletBean bean : list) {
+                     System.out.println("hii");
+                     try {
+                           if (ph2.equals(bean.getPh1()))
+                           {
+                                  System.out.println("tst");
+                                  boolean with = withdraw(ph1, amount);
+                                  System.out.println("withdraw");
+                                  if (with) {
+                                         boolean dep = deposit(ph2, amount);
+                                         System.out.println("deposit");
+                                         if (dep) {
+                                                b2 = true;
+                                                System.out.println("transfered");
+
+                                         }
+
+                                  }
+                           }
+                     } catch (Exception e) {
+                           System.out.println(e.getMessage());
+                     }
+
+              }
+
+   }   System.out.println(b2);
+              return b2;
+       }
+
+}
+
+

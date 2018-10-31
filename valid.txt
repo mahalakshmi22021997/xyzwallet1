@@ -1,0 +1,47 @@
+public boolean validations(WalletBean w) throws WalletException {
+		boolean isValid = false;
+		if(!(w.getfName().length()>=3))
+		{
+			throw new WalletException(ExceptionMessage.ERROR1);
+		}
+		else if(!(w.getlName().length()>=5))
+		{
+			throw new WalletException(ExceptionMessage.ERROR7);
+			
+		}
+		
+		else if(!(w.getTargetMobileNum().length()==10 && w.getTargetMobileNum().matches("^[6-9][0-9]{9}")))
+				{
+			throw new WalletException(ExceptionMessage.ERROR2);
+				}
+		else if(!(w.getEmail().matches("^[A-Za-z0-9.]+@[A-Za-z0-9.-]+\\\\.[A-Z]{2,6}$"))) 
+		{
+			throw new WalletException(ExceptionMessage.ERROR3);
+		}
+		else if (!(w.getAddress().trim().length() == 0) )
+		{
+			throw new WalletException(ExceptionMessage.ERROR4);
+		}
+
+		else if (!(w.getBalance() > 0)) {
+            throw new WalletException(ExceptionMessage.ERROR5);
+            
+        }
+        else if (!(w.getAmount() > 0)) {
+            throw new WalletException(ExceptionMessage.ERROR6);
+        }
+        else {
+        	isValid = true;
+        }
+		return isValid;
+	}
+@Override
+	public boolean validAmount(double amount) {
+		
+		boolean isValid = true;
+		if(amount<0)
+		{
+		 isValid=false;	
+		}
+		return isValid;
+	}
